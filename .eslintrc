@@ -1,0 +1,35 @@
+{
+  "extends": "eslint:recommended",
+
+  "plugins": [
+    "react"
+  ],
+
+  "env": {
+    "browser": true,
+    "node": true
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "impliedStrict": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+
+  "rules": {
+    "no-console": 0,
+    "no-debugger": 0,
+    "no-empty-pattern": "off",
+    "comma-dangle": "warn",
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "^h$" }],
+
+    "semi": "warn",
+    "curly": ["error", "multi-line"],
+
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  }
+}

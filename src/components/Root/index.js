@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Students from '../Students';
 import './style.less';
 
 class Root extends Component {
@@ -14,7 +15,7 @@ class Root extends Component {
   render() {
     return (
       <div className="Root">
-        {this.state.title}
+        <Students />
       </div>
     );
   }

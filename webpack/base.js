@@ -34,8 +34,7 @@ const config = {
       {
         test: /\.jsx?$/,
         use: [
-          'babel-loader',
-          'eslint-loader'
+          'babel-loader'
         ],
         include: [
           resolve(appPath, 'src/')

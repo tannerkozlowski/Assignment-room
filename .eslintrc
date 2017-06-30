@@ -1,8 +1,10 @@
 {
+  "parser": "babel-eslint",
   "extends": "eslint:recommended",
 
   "plugins": [
-    "react"
+    "react",
+    "babel"
   ],
 
   "env": {
@@ -30,6 +32,7 @@
     "curly": ["error", "multi-line"],
 
     "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/jsx-uses-vars": "error",
+    "no-undef": 0
   }
 }

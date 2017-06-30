@@ -3,16 +3,16 @@ import React from 'react';
 import searchIcon from 'assets/icons/search.svg';
 import './style.less';
 
-const Input = ({ value, onChange }) => (
-  <div className="Input">
+const SearchInput = ({ value, onChange }) => (
+  <div className="SearchInput">
     <img
-      className="Input__search-icon"
+      className="SearchInput__search-icon"
       src={searchIcon}
       alt="Search"
     />
 
     <input
-      className="Input__field"
+      className="SearchInput__field"
       type="text"
       placeholder="Search students"
       value={value}
@@ -21,4 +21,4 @@ const Input = ({ value, onChange }) => (
   </div>
 );
 
-export default Input;
+export default SearchInput;

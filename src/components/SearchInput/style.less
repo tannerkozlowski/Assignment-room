@@ -1,10 +1,27 @@
+@import 'style/mixins';
+@import 'style/variables';
+
 .SearchInput {
   @placeholder-color: #999;
 
-  .light-shadow {
-    -webkit-box-shadow: 1px 1px 1px 1px rgba(214, 214, 214, 0.4);
-    -moz-box-shadow:    1px 1px 1px 1px rgba(214, 214, 214, 0.4);
-    box-shadow:         1px 1px 1px 1px rgba(214, 214, 214, 0.4);
+  &::-webkit-input-placeholder  {
+    font: @app-font;
+    color: @placeholder-color;
+  }
+
+  &::-moz-placeholder  {
+    font: @app-font;
+    color: @placeholder-color;
+  }
+
+  &:-moz-placeholder  {
+    font: @app-font;
+    color: @placeholder-color;
+  }
+
+  &:-ms-input-placeholder  {
+    font: @app-font;
+    color: @placeholder-color;
   }
 
   display: flex;
@@ -19,7 +36,10 @@
     width: 20px;
     height: 20px;
 
+    box-sizing: content-box;
+
     margin: auto;
+    padding-top: 2px;
   }
 
   &__field {
@@ -34,12 +54,8 @@
 
     background-color: #fff;
     font-size: 1em;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
 
     .light-shadow();
   }
-
-  ::-webkit-input-placeholder  { color: @placeholder-color }
-  ::-moz-placeholder           { color: @placeholder-color }
-  :-moz-placeholder            { color: @placeholder-color }
-  :-ms-input-placeholder       { color: @placeholder-color }
 }

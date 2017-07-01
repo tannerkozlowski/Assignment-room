@@ -18,11 +18,10 @@ module.exports = {
     // Match the output `publicPath`
     publicPath: '/',
 
-		host: 'localhost',
+    host: 'localhost',
     port: 3000,
 
-		historyApiFallback: true,
-		open: true,
+    historyApiFallback: true,
 
     stats: {
       colors: true,

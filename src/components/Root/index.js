@@ -4,14 +4,6 @@ import Students from '../Students';
 import './style.less';
 
 class Root extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      title: 'Frontend Assignment'
-    };
-  }
-
   render() {
     return (
       <div className="Root">

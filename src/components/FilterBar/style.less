@@ -1,0 +1,53 @@
+.FilterBar {
+  margin: 0 20px;
+
+  &__filters-label {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    text-transform: uppercase;
+
+    color: #aaa;
+  }
+
+  &__clear-label-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__clear-label {
+    box-sizing: content-box;
+    padding: 10px 0;
+
+    font-size: 0.9em;
+    color: #aaa;
+
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+      color: #444;
+    }
+  }
+
+  &__container {
+    padding: 30px 30px 1px 30px;
+    background-color: #f1f1f1;
+
+    border-radius: 20px;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__search-field-wrapper {
+    flex-grow: 3;
+  }
+
+  &__dropdown-wrapper {
+    flex-grow: 1;
+    padding-left: 10px;
+  }
+}

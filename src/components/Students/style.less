@@ -1,4 +1,6 @@
 .Students {
+  @add-icon-size: 28px;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -15,12 +17,15 @@
     &-add-student {
       display: flex;
       align-items: center;
-      font-weight: bold;
+
+      font-size: 1.1em;
 
       &-icon {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
+        width: @add-icon-size;
+        height: @add-icon-size;
+
+        margin-top: 1px;
+        margin-right: 7px;
       }
     }
   }

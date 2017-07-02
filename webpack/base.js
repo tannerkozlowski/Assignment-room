@@ -9,7 +9,7 @@ const NODE_ENV = process.env.NODE_ENV;
 const appPath  = process.cwd();
 
 const config = {
-  context: resolve(appPath, 'src/'),
+  context: resolve(appPath),
 
   output: {
     path: resolve(appPath, 'build/'),

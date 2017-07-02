@@ -22,12 +22,20 @@ class CheckboxGroup extends Component {
   handleToggle(value) {
     const { filterName, onToggle } = this.props;
 
+    if (!filterName || !onToggle) {
+      return;
+    }
+
     onToggle(filterName, value);
   }
 
   render() {
     const { open } = this.state;
     const { title, children, checked } = this.props;
+
+    if (!children) {
+      return null;
+    }
 
     const items = (children instanceof Array ? children : [children]).map(c => {
       const { value } = c.props;
@@ -38,7 +46,7 @@ class CheckboxGroup extends Component {
           {...c.props}
           key={value}
           checked={isChecked}
-          onClick={() => ::this.handleToggle(value)}
+          onClick={() => this.handleToggle(value)}
         />
       );
     });
@@ -51,9 +59,10 @@ class CheckboxGroup extends Component {
               {title}
             </div>
 
-            <div className={`CheckboxGroup__arrow-down ${open ? 'CheckboxGroup__arrow-down--active' : ''}`}>
-              <img src={arrowDownIcon} />
-            </div>
+            <img
+              className={`CheckboxGroup__arrow-down ${open ? 'CheckboxGroup__arrow-down--active' : ''}` }
+              src={arrowDownIcon}
+            />
           </div>
 
           <div className={`CheckboxGroup__menu ${open ? 'CheckboxGroup__menu--visible' : ''}`}>

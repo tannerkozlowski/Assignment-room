@@ -1,0 +1,29 @@
+.StudentList {
+  @add-student-icon: 48px;
+
+  &__empty-list {
+    margin: 40px 30px 20px 30px;
+  }
+
+  &__empty-list-header {
+    display: flex;
+    align-items: center;
+
+    color: #666;
+
+    &-icon {
+      width: @add-student-icon;
+      height: @add-student-icon;
+    }
+
+    &-title {
+      margin-left: 15px;
+      font-size: 1.5em;
+    }
+  }
+
+  &__empty-list-description {
+    margin: 15px 0 25px 0;
+    color: #666;
+  }
+}

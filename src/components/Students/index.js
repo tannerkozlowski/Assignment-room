@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
-import FilterBar  from '../FilterBar';
-import Header     from './Header';
+import Header           from './Header';
+import FilterBar        from '../FilterBar';
+import StudentList      from '../StudentList';
+import AddStudentModal  from '../AddStudentModal';
+
 import './style.less';
 
 class Students extends Component {
@@ -22,6 +25,10 @@ class Students extends Component {
         enrolled: false,
         notEnrolled: false
       }
+    },
+
+    addStudentModal: {
+      isOpen: false
     }
   };
 
@@ -54,15 +61,29 @@ class Students extends Component {
     this.setState({ filters: Students.initialState.filters });
   }
 
+  toggleModal(isOpen) {
+    return () => this.setState({ addStudentModal: { isOpen: isOpen } });
+  }
+
   render() {
+    const { students, filters, addStudentModal } = this.state;
+
     return (
       <div className="Students">
-        <Header />
+        <Header onAddClick={::this.toggleModal(true)} />
         <FilterBar
-          filters={this.state.filters}
+          filters={filters}
           changeSearch={::this.changeSearch}
           toggleFilter={::this.toggleFilter}
           clearFilters={::this.clearFilters}
+        />
+        <StudentList
+          onAddClick={::this.toggleModal(true)}
+          students={students}
+        />
+        <AddStudentModal
+          visible={addStudentModal.isOpen}
+          onClose={::this.toggleModal(false)}
         />
       </div>
     );

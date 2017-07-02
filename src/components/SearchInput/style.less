@@ -4,6 +4,8 @@
 .SearchInput {
   @placeholder-color: #999;
 
+  height: 48px;
+
   &::-webkit-input-placeholder  {
     font: @app-font;
     color: @placeholder-color;
@@ -44,9 +46,7 @@
 
   &__field {
     width: 100%;
-    height: 30px;
 
-    padding: 22px 0;
     padding-left: 45px;
 
     border: 0;
@@ -55,6 +55,10 @@
     background-color: #fff;
     font-size: 1em;
     font-family: 'Lato', Helvetica, Arial, sans-serif;
+
+    &:focus {
+      outline: none;
+    }
 
     .light-shadow();
   }

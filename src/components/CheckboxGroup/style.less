@@ -1,7 +1,7 @@
 @import 'style/mixins';
 
 .CheckboxGroup {
-  @dropdown-height: 30px;
+  @dropdown-height: 48px;
 
   @checkbox-size: 16px;
   @checkbox-side-padding: 14px;
@@ -12,17 +12,22 @@
   width: 100%;
   height: @dropdown-height;
 
+  user-select: none;
+
   &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
     background-color: #fff;
     border-radius: 10px;
 
     .light-shadow();
   }
 
-  user-select: none;
-
   &__head {
-    padding: 7px 0;
+    height: 48px;
 
     border-radius: 10px;
 
@@ -49,12 +54,12 @@
   &__arrow-down {
     display: flex;
     align-items: center;
-    padding: 0 10px;
 
-    img {
-      width: 30px;
-      height: 30px;
-    }
+    width: 30px;
+    height: 30px;
+
+    box-sizing: content-box;
+    padding: 0 10px;
     transition: 0.3s ease-in-out;
 
     &--active {

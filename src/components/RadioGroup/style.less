@@ -1,0 +1,129 @@
+@import 'style/mixins';
+
+.RadioGroup {
+  @radius: 8px;
+  @head-height: 42px;
+  @radio-size: 16px;
+  @radio-side-padding: 14px;
+  @radio-checked-color: #7fad1b;
+
+  position: relative;
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: @head-height;
+
+    border-radius: @radius;
+
+    .light-shadow();
+
+    &--outline {
+      box-shadow: none;
+      border: 1px solid #ccc;
+    }
+
+    &--visible {
+      z-index: 10;
+    }
+  }
+
+  &__head {
+    position: relative;
+
+    width: 100%;
+    height: @head-height;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 15px;
+
+    border-radius: @radius;
+    cursor: pointer;
+    user-select: none;
+
+    background-color: #fff;
+
+    &:active {
+      background-color: #f5f5f5;
+    }
+
+    &-title {
+      font-weight: bold;
+    }
+
+    &-arrow {
+      .absolute-vertical-center();
+      right: 10px;
+
+      width: 30px;
+      height: 30px;
+
+      transition: all 0.2s ease-in-out;
+
+      &--visible {
+        transform: scaleY(-1);
+      }
+    }
+  }
+
+  &__menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    background-color: #fff;
+    border-radius: @radius;
+
+    transition: all 0.2s ease-in-out;
+    z-index: 10;
+
+    &--visible {
+      max-height: 400px;
+      opacity: 1;
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    &-checkbox {
+      display: none;
+    }
+
+    &-label {
+      display: block;
+      cursor: pointer;
+
+      padding: 15px 20px 15px @radio-size + @radio-side-padding * 2;
+
+      &::before {
+        display: block;
+        content: '';
+
+        width:  @radio-size;
+        height: @radio-size;
+
+        border-radius: 100%;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+
+        transition: 0.2s ease-in-out;
+
+        .absolute-vertical-center();
+        left: @radio-side-padding;
+      }
+    }
+
+    &-checkbox:checked + &-label {
+      &::before {
+        background-color: #fff;
+        border: 5px solid @radio-checked-color;
+      }
+    }
+  }
+}

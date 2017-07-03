@@ -13,15 +13,15 @@ const EmptyList = ({ onAddClick }) => (
       />
 
       <div className="StudentList__empty-list-header-title">
-        Get started by adding students
+        No students found
       </div>
     </div>
 
     <div className="StudentList__empty-list-description">
-      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+      Add a new student or change filter conditions.
     </div>
 
-    <Button label="Add a student" onClick={onAddClick} />
+    <Button className="StudentList__empty-list-add" label="Add students" onClick={onAddClick} />
   </div>
 );
 

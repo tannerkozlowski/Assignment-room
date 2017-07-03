@@ -11,9 +11,35 @@ class RadioGroup extends Component {
     super();
 
     this.state = {
-      open: false,
-      value: ''
+      animated: false,
+      open: false
     };
+
+    this.listenClick = this.listenClick.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (!this.state.open && nextState.open) {
+      this.setState({ animated: true });
+      document.addEventListener('click', this.listenClick);
+    } else if (this.state.open && !nextState.open) {
+      setTimeout(() => {
+        this.setState({ animated: false });
+        document.removeEventListener('click', this.listenClick);
+      }, 200);
+    }
+  }
+
+  listenClick(e) {
+    let { target } = e;
+
+    while (target !== this.containerEl && target !== document.body) {
+      target = target.parentNode;
+    }
+
+    if (target !== this.containerEl) {
+      this.setState({ open: false });
+    }
   }
 
   toggleOpen() {
@@ -21,13 +47,14 @@ class RadioGroup extends Component {
   }
 
   toggleRadio(value) {
-    debugger;
-    this.setState({ value });
+    this.props.onToggle(value);
+
+    setTimeout(() => this.setState({ open: false }), 50);
   }
 
   render() {
-    const { children, outline } = this.props;
-    const { open, value } = this.state;
+    const { children, outline, value } = this.props;
+    const { open, animated } = this.state;
 
     let title = '';
 
@@ -55,12 +82,13 @@ class RadioGroup extends Component {
     const innerClassName = [
       'RadioGroup__inner',
       outline && 'RadioGroup__inner--outline',
-      open    && 'RadioGroup__inner--visible'
+      open    && 'RadioGroup__inner--visible',
+      animated && 'RadioGroup__inner--animated'
     ].join(' ');
 
     return (
       <div className="RadioGroup">
-        <div className={innerClassName}>
+        <div className={innerClassName} ref={node => this.containerEl = node}>
           <div className="RadioGroup__head" onClick={::this.toggleOpen}>
             <div className="RadioGroup__head-title">
               {title}

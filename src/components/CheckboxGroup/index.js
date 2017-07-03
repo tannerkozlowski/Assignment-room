@@ -13,13 +13,28 @@ class CheckboxGroup extends Component {
     this.state = {
       open: false
     };
+
+    this.listenClick = this.listenClick.bind(this);
   }
 
-  handleClick() {
+  componentWillUpdate(nextProps, nextState) {
+    if (!this.state.open && nextState.open) {
+      this.setState({ animated: true });
+      document.addEventListener('click', this.listenClick);
+    } else if (this.state.open && !nextState.open) {
+      setTimeout(() => {
+        this.setState({ animated: false });
+        document.removeEventListener('click', this.listenClick);
+      }, 200);
+    }
+  }
+
+
+  toggleOpen() {
     this.setState({ open: !this.state.open });
   }
 
-  handleToggle(value) {
+  toggleCheckbox(value) {
     const { filterName, onToggle } = this.props;
 
     if (!filterName || !onToggle) {
@@ -27,6 +42,18 @@ class CheckboxGroup extends Component {
     }
 
     onToggle(filterName, value);
+  }
+
+  listenClick(e) {
+    let { target } = e;
+
+    while (target !== this.containerEl && target !== document.body) {
+      target = target.parentNode;
+    }
+
+    if (target !== this.containerEl) {
+      this.setState({ open: false });
+    }
   }
 
   render() {
@@ -46,15 +73,15 @@ class CheckboxGroup extends Component {
           {...c.props}
           key={value}
           checked={isChecked}
-          onClick={() => this.handleToggle(value)}
+          onClick={() => this.toggleCheckbox(value)}
         />
       );
     });
 
     return (
       <div className="CheckboxGroup">
-        <div className="CheckboxGroup__inner">
-          <div className="CheckboxGroup__head" onClick={::this.handleClick}>
+        <div className="CheckboxGroup__inner" ref={node => this.containerEl = node}>
+          <div className="CheckboxGroup__head" onClick={::this.toggleOpen}>
             <div className="CheckboxGroup__title">
               {title}
             </div>

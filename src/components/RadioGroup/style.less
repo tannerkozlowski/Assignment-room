@@ -2,31 +2,32 @@
 
 .RadioGroup {
   @radius: 8px;
-  @head-height: 42px;
+  @head-height: 40px;
   @radio-size: 16px;
   @radio-side-padding: 14px;
   @radio-checked-color: #7fad1b;
+  @border-width: 1px;
 
   position: relative;
+  max-width: 200px;
+  height: @head-height;
 
   &__inner {
     position: absolute;
-    top: 0;
-    left: 0;
+    top:  -@border-width;
+    left: -@border-width;
 
     width: 100%;
-    min-height: @head-height;
 
     border-radius: @radius;
-
     .light-shadow();
 
     &--outline {
       box-shadow: none;
-      border: 1px solid #ccc;
+      border: @border-width solid #ddd;
     }
 
-    &--visible {
+    &--animated{
       z-index: 10;
     }
   }
@@ -53,7 +54,8 @@
     }
 
     &-title {
-      font-weight: bold;
+      //font-weight: bold;
+      color: #222;
     }
 
     &-arrow {
@@ -73,14 +75,12 @@
 
   &__menu {
     max-height: 0;
-    opacity: 0;
     overflow: hidden;
 
     background-color: #fff;
     border-radius: @radius;
 
-    transition: all 0.2s ease-in-out;
-    z-index: 10;
+    transition: all 0.3s ease-in-out;
 
     &--visible {
       max-height: 400px;

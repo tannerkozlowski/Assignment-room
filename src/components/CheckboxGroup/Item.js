@@ -1,15 +1,14 @@
 import React from 'react';
 
 const Item = ({ title, checked, value, onClick }) => (
-  <div className="CheckboxGroup__item">
+  <div className="CheckboxGroup__item" onClick={onClick}>
     <input
-      id={value}
+      readOnly
       type="checkbox"
       className="CheckboxGroup__item-checkbox"
       checked={checked}
-      onChange={onClick}
     />
-    <label className="CheckboxGroup__item-label" htmlFor={value}>
+    <label className="CheckboxGroup__item-label">
       {title}
     </label>
   </div>

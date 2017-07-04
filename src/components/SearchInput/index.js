@@ -3,8 +3,8 @@ import React from 'react';
 import searchIcon from 'assets/icons/search.svg';
 import './style.less';
 
-const SearchInput = ({ value, onChange }) => (
-  <div className="SearchInput">
+const SearchInput = ({ value, className, onChange }) => (
+  <div className={`SearchInput ${className || ''}`}>
     <img
       className="SearchInput__search-icon"
       src={searchIcon}

@@ -4,7 +4,7 @@ const webpack      = require('webpack');
 const { resolve }  = require('path');
 
 module.exports = {
-  entry: './app.js',
+  entry: './src/app.js',
 
   devtool: '#cheap-inline-module-source-map',
 

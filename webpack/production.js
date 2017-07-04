@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './app.js',
+  entry: './src/app.js',
 
   plugins: [
     new webpack.optimize.UglifyJsPlugin(({

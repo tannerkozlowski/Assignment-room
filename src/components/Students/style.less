@@ -1,12 +1,14 @@
 .Students {
   @add-icon-size: 28px;
 
+  margin: 0 20px;
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 30px 20px;
+    padding: 20px 0;
 
     color: #666;
 
@@ -18,13 +20,20 @@
       display: flex;
       align-items: center;
 
+      padding: 10px;
+      border-radius: 6px;
+
       font-size: 1.1em;
+      cursor: pointer;
+
+      &:active {
+        background-color: #eee;
+      }
 
       &-icon {
         width: @add-icon-size;
         height: @add-icon-size;
 
-        margin-top: 1px;
         margin-right: 7px;
       }
     }

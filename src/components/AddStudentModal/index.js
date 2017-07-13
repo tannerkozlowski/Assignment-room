@@ -142,7 +142,7 @@ class AddStudentModal extends Component {
             </div>
           </div>
 
-          <Button onClick={::this.save} className="AddStudentModal__submit" label="Save information" />
+          <Button onClick={::this.save} className="Modal__submit" label="Save information" />
         </div>
       </Modal>
     );

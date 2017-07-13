@@ -14,7 +14,7 @@ const SearchInput = ({ value, className, onChange }) => (
     <input
       className="SearchInput__field"
       type="text"
-      placeholder="Search students"
+      placeholder="Search for students"
       value={value}
       onChange={onChange}
     />

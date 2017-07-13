@@ -30,7 +30,8 @@
     margin-top: 100px;
 
     width: 900px;
-    min-height: 500px;
+    min-height: 300px;
+    //max-height: 500px;
 
     padding: @window-padding;
     padding-bottom: 100px;
@@ -73,6 +74,16 @@
     }
   }
 
+  &__controls {
+    display: flex;
+    padding: @window-padding @window-padding 0;
+  }
+
+  &__window-tip {
+    padding-bottom: @window-padding;
+    color: #999;
+  }
+
   &__close {
     position: absolute;
     top: @window-padding;
@@ -83,7 +94,8 @@
   &__submit {
     position: absolute;
     bottom: @window-padding;
-    left: @window-padding;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #7fad1b;
 
     &:active {

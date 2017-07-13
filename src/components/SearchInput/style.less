@@ -4,7 +4,7 @@
 .SearchInput {
   @placeholder-color: #999;
 
-  height: 48px;
+  height: @input-height;
 
   &::-webkit-input-placeholder  {
     font: @app-font;
@@ -46,6 +46,7 @@
 
   &__field {
     width: 100%;
+    min-width: 450px;
 
     padding-left: 45px;
 

@@ -1,85 +1,8 @@
 @import 'style/mixins';
 
+@window-padding: 24px;
+
 .AddStudentModal {
-  @window-padding: 24px;
-
-  .fullscreen();
-  overflow: hidden;
-
-  display: flex;
-  background-color: rgba(70, 70, 70, 0.7);
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: 0.3s ease-in-out;
-
-  &--visible {
-    opacity: 1;
-    pointer-events: auto;
-    padding-top: 0;
-  }
-
-  &--visible > &__window {
-    transform: translateY(0);
-  }
-
-  &__window {
-    position: relative;
-    margin: auto;
-    margin-top: 100px;
-
-    width: 900px;
-    min-height: 500px;
-
-    padding: @window-padding;
-    padding-bottom: 100px;
-
-    background-color: #fff;
-    border-radius: 14px;
-
-    transition: 0.3s ease-in-out;
-    transform: translateY(100px);
-  }
-
-  &__header {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin-bottom: 30px;
-    user-select: none;
-
-    &-title {
-      font-size: 1.2em;
-      letter-spacing: 0.05em;
-      margin-bottom: 10px;
-    }
-
-    &-note {
-      color: #666;
-    }
-
-    &-note-link {
-      margin-left: 6px;
-      color: #222;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  &__close {
-    position: absolute;
-    top: @window-padding;
-    right: @window-padding;
-    cursor: pointer;
-  }
-
   &__submit {
     position: absolute;
     bottom: @window-padding;

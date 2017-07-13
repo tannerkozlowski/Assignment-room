@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import Row         from './Row';
 import Button      from '../Button';
-import closeIcon   from 'assets/icons/close.svg';
-
 import './style.less';
 
 const rooms = {
@@ -84,7 +81,6 @@ class AddStudentModal extends Component {
     if (!this.state.students.length) {
       return;
     }
-    debugger;
     this.props.onSave(this.state.students);
     this.props.onClose();
     this.setState(AddStudentModal.initialState);
@@ -118,41 +114,29 @@ class AddStudentModal extends Component {
   }
 
   render() {
-    const { visible, onClose } = this.props;
-
     return (
-      <div className={`AddStudentModal ${visible ? 'AddStudentModal--visible' : ''}`}>
-        <div className="AddStudentModal__window">
+      <div className="AddStudentModal">
+        <div className="Modal__header">
+          <span className="Modal__header-title">
+            Add Students
+          </span>
 
-          <div className="AddStudentModal__header">
-            <span className="AddStudentModal__header-title">
-              Add Students
-            </span>
+          <span className="Modal__header-note">
+            Adding more than one member?
 
-            <span className="AddStudentModal__header-note">
-              Adding more than one member?
-
-              <a href="#" className="AddStudentModal__header-note-link">
-                Bulk upload
-              </a>
-            </span>
-          </div>
-
-          <div className="AddStudentModal__window-container">
-            <div className="AddStudentModal__list">
-              {::this.renderStudents()}
-            </div>
-          </div>
-
-          <img
-            className="AddStudentModal__close"
-            src={closeIcon}
-            onClick={onClose}
-            alt="Close window"
-          />
-
-          <Button onClick={::this.save} className="AddStudentModal__submit" label="Save information" />
+            <a href="#" className="Modal__header-note-link">
+              Bulk upload
+            </a>
+          </span>
         </div>
+
+        <div className="Modal__window-container">
+          <div className="AddStudentModal__list">
+            {::this.renderStudents()}
+          </div>
+        </div>
+
+        <Button onClick={::this.save} className="AddStudentModal__submit" label="Save information" />
       </div>
     );
   }

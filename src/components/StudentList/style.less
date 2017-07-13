@@ -1,7 +1,8 @@
 @import 'style/mixins';
+@import 'style/variables';
 
 .StudentList {
-  @add-student-icon: 48px;
+  @add-student-icon: @input-height;
 
   &__empty-list {
     margin: 40px 30px 20px 30px;
@@ -128,7 +129,7 @@
 
     &-row-avatar {
       width: 48px;
-      height: 48px;
+      height: @input-height;
 
       font-weight: normal;
 

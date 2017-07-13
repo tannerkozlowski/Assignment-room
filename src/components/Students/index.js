@@ -4,6 +4,7 @@ import Header           from './Header';
 import FilterBar        from '../FilterBar';
 import StudentList      from '../StudentList';
 import AddStudentModal  from '../AddStudentModal';
+import AssignStudentModal  from '../AssignStudentModal';
 
 import './style.less';
 
@@ -32,13 +33,41 @@ class Students extends Component {
       isOpen: false
     },
 
+    assignStudentModal: {
+      isOpen: false
+    },
+
     allSelected: false
   };
 
   constructor() {
     super();
+    let generatedStudents = Array.from(new Array(20), (_, index) => {
+      return {
+        id: index,
+        firstName: this.generateString(),
+        lastName: this.generateString(),
+        room: this.generateRoom(),
+        parent: this.generateString(),
+        bgColor: this.getColor(),
+        selected: false
+      };
+    });
+    this.state = { ...Students.initialState, students: generatedStudents };
+  }
 
-    this.state = { ...Students.initialState };
+  generateRoom() {
+    const min = 1;
+    const max = 4;
+    return `Room ${Math.floor(Math.random() * (max - min + 1)) + min}`;
+  }
+
+  generateString() {
+    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+  }
+
+  getColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
   changeSearch(e) {
@@ -64,8 +93,10 @@ class Students extends Component {
     this.setState({ filters: Students.initialState.filters });
   }
 
-  toggleModal(isOpen) {
-    return () => this.setState({ addStudentModal: { isOpen: isOpen } });
+  toggleModal(modal, isOpen) {
+    const obj = {};
+    obj[modal] = { isOpen: isOpen };
+    return () => this.setState(obj);
   }
 
   applyFilters() {
@@ -100,6 +131,10 @@ class Students extends Component {
     this.setState({
       students: [ ...this.state.students, ...newStudents]
     });
+  }
+
+  replaceStudents(students) {
+    this.setState({ students });
   }
 
   toggleSelect(index) {
@@ -152,11 +187,13 @@ class Students extends Component {
   }
 
   render() {
-    const { filters, addStudentModal } = this.state;
+    const { filters, addStudentModal, assignStudentModal, students } = this.state;
 
     return (
       <div className="Students">
-        <Header onAddClick={::this.toggleModal(true)} />
+        <Header
+          onAddClick={::this.toggleModal('addStudentModal', true)}
+          onAssignClick={::this.toggleModal('assignStudentModal', true)} />
         <FilterBar
           filters={filters}
           changeSearch={::this.changeSearch}
@@ -166,7 +203,7 @@ class Students extends Component {
         <StudentList
           onSelectAll={::this.toggleSelectAll}
           onSelect={::this.toggleSelect}
-          onAddClick={::this.toggleModal(true)}
+          onAddClick={::this.toggleModal('addStudentModal', true)}
           onRoomChange={::this.changeRoom}
           onEditModeChange={::this.toggleEditMode}
           updateStudent={::this.updateStudent}
@@ -174,8 +211,15 @@ class Students extends Component {
         />
         <AddStudentModal
           visible={addStudentModal.isOpen}
-          onClose={::this.toggleModal(false)}
           onSave={::this.addStudents}
+          onClose={::this.toggleModal('addStudentModal', false)}
+        />
+        <AssignStudentModal
+          students={students}
+          visible={assignStudentModal.isOpen}
+          onSave={::this.replaceStudents}
+          onClose={::this.toggleModal('assignStudentModal', false)}
+          filter={this.applyFilters}
         />
       </div>
     );

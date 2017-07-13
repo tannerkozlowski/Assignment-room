@@ -1,0 +1,147 @@
+@import 'style/mixins';
+
+.Modal {
+  @window-padding: 24px;
+
+  .fullscreen();
+  overflow: hidden;
+
+  display: flex;
+  background-color: rgba(70, 70, 70, 0.7);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s ease-in-out;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+    padding-top: 0;
+  }
+
+  &--visible > &__window {
+    transform: translateY(0);
+  }
+
+  &__window {
+    position: relative;
+    margin: auto;
+    margin-top: 100px;
+
+    width: 900px;
+    min-height: 300px;
+    //max-height: 500px;
+
+    padding: @window-padding;
+    padding-bottom: 100px;
+
+    background-color: #fff;
+    border-radius: 14px;
+
+    transition: 0.3s ease-in-out;
+    transform: translateY(100px);
+  }
+
+  &__header {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 30px;
+    user-select: none;
+
+    &-title {
+      font-size: 1.2em;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    &-note {
+      color: #666;
+    }
+
+    &-note-link {
+      margin-left: 6px;
+      color: #222;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    padding: @window-padding @window-padding 0;
+  }
+
+  &__window-tip {
+    padding-bottom: @window-padding;
+    color: #999;
+  }
+
+  &__close {
+    position: absolute;
+    top: @window-padding;
+    right: @window-padding;
+    cursor: pointer;
+  }
+
+  &__submit {
+    position: absolute;
+    bottom: @window-padding;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #7fad1b;
+
+    &:active {
+      background-color: #7fad1b;
+      opacity: 0.9;
+    }
+  }
+
+  &__row {
+    display: flex;
+
+    margin-bottom: 16px;
+    align-items: center;
+
+    &-id {
+      width: 20px;
+      margin-right: 15px;
+    }
+
+    &-first-name, &-last-name, &-room, &-parent {
+      flex: 1;
+      margin-left: 12px;
+    }
+
+    &-action {
+      display: flex;
+      flex-direction: column;
+
+      width: 72px;
+      flex-shrink: 0;
+
+      margin-left: 12px;
+    }
+
+    &-action-submit {
+      background-color: #7fad1b;
+
+      &:active {
+        background-color: #7fad1b;
+        opacity: 0.9;
+      }
+    }
+
+    &-action-remove {
+      align-self: flex-end;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@import 'style/variables';
+
 .FilterBar {
   &__filters-label {
     margin-top: 10px;
@@ -47,5 +49,8 @@
   &__dropdown-wrapper {
     flex-grow: 1;
     padding-left: 10px;
+    width: 250px;
+    > .RadioGroup__head {
+      height: @input-height; }
   }
 }

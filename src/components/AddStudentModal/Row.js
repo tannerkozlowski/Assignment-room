@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import TextInput   from '../TextInput';
-import RadioGroup  from '../RadioGroup';
-import Button      from '../Button';
+import TextInput   from '../TextInput/index';
+import RadioGroup  from '../RadioGroup/index';
+import Button      from '../Button/index';
 import removeIcon  from 'assets/icons/remove.svg';
 
 const AddIcon = ({ onClick }) => (

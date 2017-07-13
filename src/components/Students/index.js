@@ -4,7 +4,6 @@ import Header           from './Header';
 import FilterBar        from '../FilterBar';
 import StudentList      from '../StudentList';
 import AddStudentModal  from '../AddStudentModal';
-import Modal  from '../Modal';
 
 import './style.less';
 
@@ -173,15 +172,11 @@ class Students extends Component {
           updateStudent={::this.updateStudent}
           students={::this.applyFilters()}
         />
-        <Modal
+        <AddStudentModal
           visible={addStudentModal.isOpen}
+          onSave={::this.addStudents}
           onClose={::this.toggleModal(false)}
-        >
-          <AddStudentModal
-            onSave={::this.addStudents}
-            onClose={::this.toggleModal(false)}
-          />
-        </Modal>
+        />
       </div>
     );
   }

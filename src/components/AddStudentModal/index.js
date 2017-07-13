@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Row         from './Row';
-import Button      from '../Button';
+import Modal  from '../Modal';
+import Row      from './Row';
+import Button   from '../Button';
 import './style.less';
 
 const rooms = {
@@ -114,30 +115,36 @@ class AddStudentModal extends Component {
   }
 
   render() {
+    const { visible, onClose } = this.props;
     return (
-      <div className="AddStudentModal">
-        <div className="Modal__header">
-          <span className="Modal__header-title">
-            Add Students
-          </span>
+      <Modal
+        visible={visible}
+        onClose={onClose}
+      >
+        <div className="AddStudentModal">
+          <div className="Modal__header">
+            <span className="Modal__header-title">
+              Add Students
+            </span>
 
-          <span className="Modal__header-note">
-            Adding more than one member?
+            <span className="Modal__header-note">
+              Adding more than one member?
 
-            <a href="#" className="Modal__header-note-link">
-              Bulk upload
-            </a>
-          </span>
-        </div>
-
-        <div className="Modal__window-container">
-          <div className="AddStudentModal__list">
-            {::this.renderStudents()}
+              <a href="#" className="Modal__header-note-link">
+                Bulk upload
+              </a>
+            </span>
           </div>
-        </div>
 
-        <Button onClick={::this.save} className="AddStudentModal__submit" label="Save information" />
-      </div>
+          <div className="Modal__window-container">
+            <div className="AddStudentModal__list">
+              {::this.renderStudents()}
+            </div>
+          </div>
+
+          <Button onClick={::this.save} className="AddStudentModal__submit" label="Save information" />
+        </div>
+      </Modal>
     );
   }
 }

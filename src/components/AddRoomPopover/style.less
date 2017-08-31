@@ -1,0 +1,19 @@
+@import 'style/mixins';
+
+.AddRoomPopover {
+  top: 50px!important;
+  width: 300px;
+
+  &__button {
+    background-color: #7fad1b;
+
+    &:active {
+      background-color: #7fad1b;
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+    }
+  }
+}

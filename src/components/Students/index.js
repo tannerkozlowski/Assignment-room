@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import merge from 'deepmerge';
 
 import Header           from './Header';
 import FilterBar        from '../FilterBar';
@@ -13,16 +14,12 @@ const getColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16);
 class Students extends Component {
   static initialState = {
     students: [],
+    rooms: ['Room 1', 'Room 2', 'Room 3', 'Room 4'],
 
     filters: {
       search: '',
 
-      rooms: {
-        'Room 1': false,
-        'Room 2': false,
-        'Room 3': false,
-        'Room 4': false
-      },
+      rooms: {},
 
       enrollment: {
         enrolled: true
@@ -133,6 +130,12 @@ class Students extends Component {
     });
   }
 
+  addRoom(room) {
+    this.setState({
+      rooms: this.state.rooms.concat(room)
+    });
+  }
+
   replaceStudents(students) {
     this.setState({ students });
   }
@@ -187,15 +190,17 @@ class Students extends Component {
   }
 
   render() {
-    const { filters, addStudentModal, assignStudentModal, students } = this.state;
+    const { filters, addStudentModal, assignStudentModal, rooms, students } = this.state;
 
     return (
       <div className="Students">
         <Header
+          onAddRoom={::this.addRoom}
           onAddClick={::this.toggleModal('addStudentModal', true)}
           onAssignClick={::this.toggleModal('assignStudentModal', true)} />
         <FilterBar
           filters={filters}
+          rooms={rooms}
           changeSearch={::this.changeSearch}
           toggleFilter={::this.toggleFilter}
           clearFilters={::this.clearFilters}
@@ -210,6 +215,7 @@ class Students extends Component {
           students={::this.applyFilters()}
         />
         <AddStudentModal
+          rooms={rooms}
           visible={addStudentModal.isOpen}
           onSave={::this.addStudents}
           onClose={::this.toggleModal('addStudentModal', false)}

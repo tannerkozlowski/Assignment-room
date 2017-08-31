@@ -4,7 +4,7 @@ import SearchInput from '../SearchInput';
 import CheckboxGroup from '../CheckboxGroup';
 import './style.less';
 
-const FilterBar = ({ filters, changeSearch, toggleFilter, clearFilters }) => (
+const FilterBar = ({ filters, changeSearch, toggleFilter, clearFilters, rooms }) => (
   <div className="FilterBar">
     <div className="FilterBar__filters-label">Filters</div>
 
@@ -21,10 +21,9 @@ const FilterBar = ({ filters, changeSearch, toggleFilter, clearFilters }) => (
             checked={filters.rooms}
             onToggle={toggleFilter}
           >
-            <CheckboxGroup.Item title="Room 1" value="Room 1" />
-            <CheckboxGroup.Item title="Room 2" value="Room 2" />
-            <CheckboxGroup.Item title="Room 3" value="Room 3" />
-            <CheckboxGroup.Item title="Room 4" value="Room 4" />
+            {rooms.map((room) => (
+              <CheckboxGroup.Item key={room} title={room} value={room} />
+            ))}
           </CheckboxGroup>
         </div>
 

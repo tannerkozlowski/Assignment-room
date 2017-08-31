@@ -21,8 +21,8 @@ class PopoverTrigger extends Component {
   }
 
   handleInsideClick = (evt) => {
-    evt.stopPropagation();
     evt.nativeEvent.stopImmediatePropagation();
+    evt.stopPropagation();
   }
 
   openPopover = () => {
